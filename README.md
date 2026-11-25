@@ -1,21 +1,27 @@
 # Mon tempo
 
-Métronome web pour iPhone : signature (1 à 12 temps), tempo (30 à 250 BPM),
-accent sur le premier temps, tap tempo et scanner façon K2000.
+A metronome that runs in the browser, on a phone or a computer: time
+signature (1 to 12 beats), tempo (30 to 250 BPM), accented first beat, tap
+tempo and a K2000-style scanner light. No install, no account, no store.
 
-**[Ouvrir l'appli](https://nicokosi.github.io/mon-tempo/)**
+**[Open the app](https://nicokosi.github.io/mon-tempo/)**
 
-<img src="docs/apercu.gif" width="280" alt="Aperçu : le scanner rouge balaie à chaque temps, on passe de 4 à 3 temps puis le tempo monte de 100 à 110">
+<img src="docs/apercu.gif" width="280" alt="Preview: the red scanner sweeps on every beat, the signature changes from 4 to 3 beats, then the tempo rises from 100 to 110">
 
-Les réglages vivent dans l'URL (`?bpm=96&beats=3`) : un favori ou un raccourci
-sur l'écran d'accueil par morceau.
+Settings live in the URL (`?bpm=96&beats=3`), so a bookmark or a home
+screen shortcut can hold the settings for one song.
 
-## Lancer en local
+On a computer, the space bar starts and stops the metronome.
 
-    python3 -m http.server 8000   # puis http://localhost:8000
-    node timing.test.mjs          # tests de la logique
+## Add it to the iPhone home screen (optional)
 
-## Publier sur GitHub Pages
+Open the link in Safari, then Share → Add to Home Screen.
 
-Settings → Pages → Deploy from a branch → `main`, dossier `/ (root)`.
-Sur l'iPhone : ouvrir l'URL dans Safari, Partager → Sur l'écran d'accueil.
+## Run locally
+
+    python3 -m http.server 8000   # then http://localhost:8000
+    node timing.test.mjs          # logic tests
+
+## Publish on GitHub Pages
+
+Settings → Pages → Deploy from a branch → `main`, folder `/ (root)`.
