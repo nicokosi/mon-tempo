@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mon tempo</title>
+  <meta name="theme-color" content="#0b0b0d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Tempo">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --fg: #f2f2f2;
+      --muted: #8a8a92;
+      --surface: #1c1c21;
+      --kitt: #ff2a1a;
+      --accent: #ffb020;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font: 18px/1.3 -apple-system, system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      padding: max(24px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+      max-width: 480px;
+      margin-inline: auto;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    button, select { font: inherit; color: inherit; touch-action: manipulation; }
+    button {
+      background: var(--surface);
+      border: 0;
+      border-radius: 14px;
+      min-height: 56px;
+      cursor: pointer;
+    }
+    button:active { filter: brightness(1.4); }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+    #scanner {
+      display: flex;
+      gap: 6px;
+      height: 28px;
+      padding: 6px;
+      background: #000;
+      border-radius: 8px;
+    }
+    #scanner span {
+      flex: 1;
+      background: var(--kitt);
+      border-radius: 3px;
+      box-shadow: 0 0 12px var(--kitt);
+      opacity: 0.1;
+    }
+    #dots { display: flex; justify-content: center; gap: 12px; min-height: 20px; }
+    #dots span { width: 16px; height: 16px; border-radius: 50%; background: var(--surface); }
+    #dots span:first-child { outline: 2px solid var(--accent); outline-offset: 2px; }
+    #dots span.on { background: var(--kitt); }
+    #dots span.on:first-child { background: var(--accent); }
+
+    .tempo { text-align: center; }
+    #bpm { font-size: 96px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+    .unit { color: var(--muted); }
+    .row { display: grid; grid-template-columns: 64px 1fr 64px; gap: 12px; align-items: center; }
+    .row button { font-size: 28px; }
+    input[type=range] { width: 100%; accent-color: var(--kitt); }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    select {
+      background: var(--surface);
+      border: 0;
+      border-radius: 14px;
+      min-height: 56px;
+      padding: 0 12px;
+      text-align: center;
+    }
+    #toggle {
+      min-height: 96px;
+      font-size: 28px;
+      font-weight: 700;
+      background: var(--kitt);
+      color: #fff;
+    }
+    #toggle[aria-pressed=true] { background: var(--surface); color: var(--fg); }
+  </style>
+</head>
+<body>
+  <div id="scanner" aria-hidden="true"></div>
+  <div id="dots" aria-hidden="true"></div>
+
+  <div class="tempo">
+    <div><span id="bpm">120</span></div>
+    <div class="unit">pulsations par minute</div>
+  </div>
+
+  <div class="row">
+    <button id="minus" aria-label="Ralentir">−</button>
+    <input id="bpm-range" type="range" min="30" max="250" aria-label="Tempo">
+    <button id="plus" aria-label="Accélérer">+</button>
+  </div>
+
+  <div class="row2">
+    <select id="beats" aria-label="Temps par mesure"></select>
+    <button id="tap">Tap tempo</button>
+  </div>
+
+  <button id="toggle" aria-pressed="false">Start</button>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
